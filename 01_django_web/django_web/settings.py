@@ -116,4 +116,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+# 개발시 사용되는 정적 파일 경로
 STATICFILES_DIRS = [BASE_DIR / 'static']
+# gunicorn collectstatic 사용시 모을 최종 정적 파일 위치
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+import socket
+
+# 내 로컬 PC 접속시에는 locahost로, 그 외에는 AWS 탄력적 IP주소를 ALLOWED_HOST로 사용
+if socket.gethostname() == 'DESKTOP_MT1512F':
+    ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+else:
+    ALLOWED_HOSTS = ['13.209.93.49']
