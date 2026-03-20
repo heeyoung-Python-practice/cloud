@@ -7,3 +7,5 @@ __pycahe__
 venv/
 cloud_venv/
 .git
+
+/mysqldata/
