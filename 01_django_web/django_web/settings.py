@@ -73,10 +73,16 @@ WSGI_APPLICATION = 'django_web.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+import os
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgressql',
+        'NAME': os.environ.get('POSTGRES_DB'),
+        "USER": os.environ.get('POSTGRES_USER'),
+        "PASSWORD": os.environ.get('POSTGRES_PASSWORD'),
+        "HOST": 'db',
+        "PORT": 5432,
     }
 }
 
@@ -127,4 +133,4 @@ import socket
 if socket.gethostname() == 'DESKTOP_MT1512F':
     ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 else:
-    ALLOWED_HOSTS = ['13.209.93.49']
+    ALLOWED_HOSTS = ['52.78.58.130']
